@@ -1,2 +1,9 @@
 # DAppNodeSDK release directories
 build_*
+
+# ui
+ui/packages/frontend/node_modules
+ui/packages/frontend/build
+
+ui/packages/backend/node_modules
+ui/packages/backend/build
