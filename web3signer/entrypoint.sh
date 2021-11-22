@@ -18,9 +18,9 @@ END_LOG="\e[0m"
 ########
 #KEYFILES_DIR_TMP="/opt/web3signer/keyfiles_tmp"    => Declare in compose
 #KEYFILES_DIR="/opt/web3signer/keyfiles"            => Declare in compose
-KEYSTORE_FILES_TMP=$(ls $KEYFILES_DIR_TMP/*.json)
-KEYSTORE_FILES=$(ls $KEYFILES_DIR/*.json)
-KEYSTORE_PASSWORD_FILE_TMP=$(ls $KEYFILES_DIR_TMP/*.txt)
+KEYSTORE_FILES_TMP=$(ls $KEYFILES_DIR_TMP/*.json 2>/dev/null)
+KEYSTORE_FILES=$(ls $KEYFILES_DIR/*.json 2>/dev/null)
+KEYSTORE_PASSWORD_FILE_TMP=$(ls $KEYFILES_DIR_TMP/*.txt 2>/dev/null)
 PASSWORD_FILE_NAME="password_"
 ARRAY_NEW_KEYSTORES=()
 
