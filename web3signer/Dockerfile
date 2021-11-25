@@ -1,11 +1,12 @@
-ARG UPSTREAM_VERSION=21.10.0
-ARG KEYFILES_DIR=/opt/web3signer/keyfiles
-ARG KEYFILES_DIR_TMP=opt/web3signer/keyfiles_tmp
+ARG UPSTREAM_VERSION
 
 ##############
 # WEB3SIGNER #
 ##############
 FROM consensys/web3signer:$UPSTREAM_VERSION
+
+ARG KEYFILES_DIR
+ARG KEYFILES_DIR_TMP
 
 # Create keyfiles dirs
 RUN mkdir -p $KEYFILES_DIR $KEYFILES_DIR_TMP

@@ -10,7 +10,7 @@ ARG UPSTREAM_VERSION
 # MIGRATIONS #
 ##############
 FROM debian:bullseye-slim as postgres-migrations
-ARG UPSTREAM_VERSION=21.10.0
+ARG UPSTREAM_VERSION
 WORKDIR /usr/src/app
 
 RUN apt update && apt install -y wget
@@ -23,5 +23,6 @@ RUN wget -q https://github.com/ConsenSys/web3signer/archive/refs/tags/${UPSTREAM
 # POSTGRES #
 ############
 FROM postgres:14.1-alpine
+ARG UPSTREAM_VERSION
 COPY --from=postgres-migrations /usr/src/app/web3signer-${UPSTREAM_VERSION}/slashing-protection/src/main/resources/migrations/postgresql/* /docker-entrypoint-initdb.d/
 CMD ["postgres"]
