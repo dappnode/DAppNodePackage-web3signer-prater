@@ -22,7 +22,8 @@ RUN wget -q https://github.com/ConsenSys/web3signer/archive/refs/tags/${UPSTREAM
 ############
 # POSTGRES #
 ############
-FROM postgres:14.1-alpine
+FROM postgres:14.1-bullseye
 ARG UPSTREAM_VERSION
+RUN apt update && apt install -y curl ufw iptables
 COPY --from=postgres-migrations /usr/src/app/web3signer-${UPSTREAM_VERSION}/slashing-protection/src/main/resources/migrations/postgresql/* /docker-entrypoint-initdb.d/
 CMD ["postgres"]

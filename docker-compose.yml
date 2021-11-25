@@ -31,8 +31,10 @@ services:
       - "5432:5432"
     volumes:
       - "postgres_data:/var/lib/postgresql/data"
+      - "postgres_migrations:/docker-entrypoint-initdb.d"
     restart: unless-stopped
 volumes:
   web3signer_keyfiles: {}
   web3signer_keyfiles_tmp: {}
   postgres_data: {}
+  postgres_migrations: {}
