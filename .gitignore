@@ -4,6 +4,8 @@ build_*
 # ui
 ui/packages/frontend/node_modules
 ui/packages/frontend/build
+ui/packages/frontend/yarn-error.log
 
 ui/packages/backend/node_modules
 ui/packages/backend/build
+ui/packages/backend/yarn-error.log
