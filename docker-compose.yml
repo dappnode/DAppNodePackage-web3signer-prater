@@ -23,10 +23,13 @@ services:
       args:
         UPSTREAM_VERSION: 21.10.0
     image: "postgres.web3signer.dnp.dappnode.eth:0.1.0"
+    env_file:
+      - ./postgres/.env.postgres
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: postgres
       POSTGRES_DB: web3signer
+    user: root
     ports:
       - "5432:5432"
     volumes:
