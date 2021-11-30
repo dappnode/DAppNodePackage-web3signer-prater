@@ -1,4 +1,4 @@
-FROM node:alpine as build-monorepo
+FROM node:16-alpine as build-monorepo
 
 WORKDIR /app
 COPY package.json lerna.json ./
@@ -20,7 +20,7 @@ WORKDIR /app/packages/backend
 COPY packages/backend .
 RUN yarn build
 
-FROM node:alpine
+FROM node:16-alpine
 
 WORKDIR /usr/src/app
 COPY --from=build-monorepo /app/packages/frontend/build dist-frontend
