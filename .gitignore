@@ -3,4 +3,6 @@ build_*
 
 # ui
 ui/node_modules
+ui/dist/
+ui/.angular/cache
 

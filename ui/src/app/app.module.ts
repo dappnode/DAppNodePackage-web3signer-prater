@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +16,8 @@ import { KeymanagerComponent } from './components/keymanager/keymanager.componen
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HelpComponent } from './components/help/help.component';
+import { SignerStatusComponent } from './components/dashboard/components/signer-status/signer-status.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { HelpComponent } from './components/help/help.component';
     KeymanagerComponent,
     DashboardComponent,
     HelpComponent,
+    SignerStatusComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ import { HelpComponent } from './components/help/help.component';
     MatDividerModule,
     MatListModule,
     FontAwesomeModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
