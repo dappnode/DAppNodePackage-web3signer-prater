@@ -18,6 +18,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HelpComponent } from './components/help/help.component';
 import { SignerStatusComponent } from './components/dashboard/components/signer-status/signer-status.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SignerPubKeysComponent } from './components/dashboard/components/signer-pub-keys/signer-pub-keys.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     DashboardComponent,
     HelpComponent,
     SignerStatusComponent,
+    SignerPubKeysComponent,
   ],
   imports: [
     BrowserModule,

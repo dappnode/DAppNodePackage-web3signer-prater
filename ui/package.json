@@ -9,7 +9,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "server": "node --loader ts-node/esm ./src/app/mock/index.ts",
-    "develop": "concurrently --kill-others \"npm run start\" \"npm run server\""
+    "develop": "concurrently --kill-others \"npm run start --configuration=dev\" \"npm run server\""
   },
   "private": true,
   "dependencies": {

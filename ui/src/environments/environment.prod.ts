@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  web3signerUrl: 'http://web3signer:9003',
 };
