@@ -14,6 +14,7 @@ export class SignerPubKeysComponent implements OnInit {
   ngOnInit(): void {
     this.signerStatusService.getSignerPublicKeys().subscribe((response) => {
       console.log(response);
+      this.publicKeys = JSON.stringify(response).split(',');
     });
   }
 }
