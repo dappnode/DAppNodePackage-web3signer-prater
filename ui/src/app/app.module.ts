@@ -11,28 +11,25 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatRippleModule } from '@angular/material/core';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import { KeymanagerComponent } from './components/keymanager/keymanager.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { HelpComponent } from './components/help/help.component';
-import { SignerStatusComponent } from './components/dashboard/components/signer-status/signer-status.component';
-import { HttpClientModule } from '@angular/common/http';
-import { SignerPubKeysComponent } from './components/dashboard/components/signer-pub-keys/signer-pub-keys.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SpinnerComponent } from './common/components/spinner/spinner.component';
+import { HttpRequestInterceptor } from './common/interceptors/http-request.interceptor';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { KeymanagerModule } from './keymanager/keymanager.module';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    KeymanagerComponent,
-    DashboardComponent,
-    HelpComponent,
-    SignerStatusComponent,
-    SignerPubKeysComponent,
-  ],
+  declarations: [AppComponent, SpinnerComponent, AboutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    // Material
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
@@ -40,9 +37,21 @@ import { SignerPubKeysComponent } from './components/dashboard/components/signer
     MatDividerModule,
     MatListModule,
     FontAwesomeModule,
+    MatBadgeModule,
+    MatRippleModule,
     HttpClientModule,
+    MatProgressSpinnerModule,
+    // Custom modules
+    DashboardModule,
+    KeymanagerModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpRequestInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

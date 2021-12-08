@@ -17,10 +17,10 @@ export class SignerRequestsService {
     return this.http.get(this.apiUrl + '/upcheck', { responseType: 'text' });
   }
 
-  getSignerPublicKeys(): Observable<object> {
+  getSignerPublicKeys(): Observable<string[]> {
     return this.http.get(this.apiUrl + '/api/v1/eth2/publicKeys', {
       responseType: 'json',
-    });
+    }) as Observable<string[]>;
   }
 
   postReloadSignerKeys(): void {

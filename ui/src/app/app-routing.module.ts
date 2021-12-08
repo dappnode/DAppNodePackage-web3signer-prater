@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { HelpComponent } from './components/help/help.component';
-import { KeymanagerComponent } from './components/keymanager/keymanager.component';
+import { AboutComponent } from './about/about.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { KeymanagerComponent } from './keymanager/keymanager.component';
 
 const routes: Routes = [
   {
@@ -13,7 +13,7 @@ const routes: Routes = [
     path: 'keymanager',
     component: KeymanagerComponent,
   },
-  { path: 'help', component: HelpComponent },
+  { path: 'about', component: AboutComponent },
 ];
 
 @NgModule({

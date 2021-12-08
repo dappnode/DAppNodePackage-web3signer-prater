@@ -1,6 +1,13 @@
 import http from 'http';
 import { IncomingMessage, ServerResponse } from 'http';
 
+function sleep(ms: number) {
+  var start = new Date().getTime(),
+    expire = start + ms;
+  while (new Date().getTime() < expire) {}
+  return;
+}
+
 http
   .createServer((req: IncomingMessage, res: ServerResponse) => {
     // Set CORS headers
@@ -16,6 +23,7 @@ http
       res.writeHead(200, { 'Content-Type': 'text/plain' });
       res.end('Server mock');
     } else if (url === '/api/v1/eth2/publicKeys' && method === 'GET') {
+      sleep(2000);
       res.writeHead(200, {
         'Content-Type': 'application/json',
         Charset: 'utf-8',
@@ -26,6 +34,7 @@ http
       ];
       res.end(JSON.stringify(publicKeys));
     } else if (url === '/upcheck' && method === 'GET') {
+      sleep(2000);
       res.writeHead(200, { 'Content-Type': 'text/plain' });
       res.end('OK');
     } else if (url === '/reload' && method === 'POST') {
