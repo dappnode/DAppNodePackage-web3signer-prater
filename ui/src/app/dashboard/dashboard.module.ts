@@ -5,7 +5,8 @@ import { GetWeb3SignerPubKeysComponent } from './get-web3-signer-pub-keys/get-we
 import { DashboardComponent } from './dashboard.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
-import { SpinnerComponent } from '../common/components/spinner/spinner.component';
+import { SpinnerModule } from '../common/spinner/spinner.module';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,6 @@ import { SpinnerComponent } from '../common/components/spinner/spinner.component
     GetWeb3SignerPubKeysComponent,
     DashboardComponent,
   ],
-  imports: [CommonModule, MatDividerModule, MatListModule],
+  imports: [CommonModule, MatDividerModule, MatListModule, MatCardModule],
 })
 export class DashboardModule {}

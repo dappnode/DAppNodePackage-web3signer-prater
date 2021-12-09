@@ -17,14 +17,13 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { SpinnerComponent } from './common/components/spinner/spinner.component';
 import { HttpRequestInterceptor } from './common/interceptors/http-request.interceptor';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { KeymanagerModule } from './keymanager/keymanager.module';
 import { AboutComponent } from './about/about.component';
-
+import { SpinnerModule } from './common/spinner/spinner.module';
 @NgModule({
-  declarations: [AppComponent, SpinnerComponent, AboutComponent],
+  declarations: [AppComponent, AboutComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -44,6 +43,7 @@ import { AboutComponent } from './about/about.component';
     // Custom modules
     DashboardModule,
     KeymanagerModule,
+    SpinnerModule,
   ],
   providers: [
     {

@@ -1,32 +1,19 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, delay, Observable } from 'rxjs';
+import { BehaviorSubject, delay, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SpinnerService {
-  status$: Observable<boolean>;
+  isLoading$ = new Subject<boolean>();
 
-  private subject = new BehaviorSubject<boolean>(false);
-  private map = new Map<string, boolean>();
+  constructor() {}
 
-  constructor() {
-    this.status$ = this.subject.asObservable().pipe(delay(0));
+  show() {
+    this.isLoading$.next(true);
   }
 
-  set(value: boolean, url: string): void {
-    if (value) {
-      this.map.set(url, value);
-      this.subject.next(true);
-      return;
-    }
-
-    if (!value && this.map.has(url)) {
-      this.map.delete(url);
-    }
-
-    if (this.map.size === 0) {
-      this.subject.next(false);
-    }
+  hide() {
+    this.isLoading$.next(false);
   }
 }

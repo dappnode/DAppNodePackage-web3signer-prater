@@ -1,1 +1,24 @@
+.mat-toolbar {
+  color: var(--dappnode-color);
+  background-color: var(--toolbar-bg-color);
+}
 
+.mat-toolbar-row,
+.toolbar-media,
+.toolbar-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.toolbar-media {
+  column-gap: 15px;
+}
+
+.toolbar-menu {
+}

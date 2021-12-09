@@ -1,9 +1,28 @@
-<mat-toolbar color="primary">
+<app-spinner></app-spinner>
+
+<mat-toolbar>
   <mat-toolbar-row>
-    <button mat-icon-button>
-      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
-    </button>
-    <h1>Web3Signer</h1>
+    <div class="toolbar-menu">
+      <button mat-icon-button>
+        <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+      </button>
+      <h1>Web3Signer</h1>
+    </div>
+
+    <div class="toolbar-media">
+      <a href="https://github.com/dappnode/DAppNodePackage-web3signer-prater">
+        <fa-icon [icon]="faGithub"></fa-icon>
+      </a>
+      <a href="https://discord.gg/c28an8dA5k">
+        <fa-icon [icon]="faDiscord"></fa-icon>
+      </a>
+      <a href="https://twitter.com/dappnode">
+        <fa-icon [icon]="faTwitter"></fa-icon>
+      </a>
+      <a href="https://discourse.dappnode.io/">
+        <fa-icon [icon]="faDiscourse"></fa-icon>
+      </a>
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>
 
@@ -18,13 +37,13 @@
         <mat-icon>key</mat-icon>
         <span>Keymanager</span>
       </a>
-      <a mat-list-item routerLink="/help" routerLinkActive="active">
-        <mat-icon>help</mat-icon>
-        <span>Help</span>
+      <a mat-list-item routerLink="/about" routerLinkActive="active">
+        <mat-icon>info</mat-icon>
+        <span>About</span>
       </a>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content style="height: 88vh">
+  <mat-sidenav-content style="height: 90vh">
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

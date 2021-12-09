@@ -24,6 +24,6 @@ export class SignerRequestsService {
   }
 
   postReloadSignerKeys(): void {
-    this.http.post(this.apiUrl + '/reload', {}).subscribe();
+    this.http.post(this.apiUrl + '/reload', {});
   }
 }
