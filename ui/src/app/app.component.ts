@@ -4,6 +4,7 @@ import {
   faDiscord,
   faTwitter,
   faDiscourse,
+  faEthereum,
 } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
@@ -16,4 +17,5 @@ export class AppComponent {
   faDiscord = faDiscord;
   faTwitter = faTwitter;
   faDiscourse = faDiscourse;
+  faEthereum = faEthereum;
 }

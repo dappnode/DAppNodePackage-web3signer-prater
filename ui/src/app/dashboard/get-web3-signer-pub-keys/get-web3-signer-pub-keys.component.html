@@ -1,5 +1,12 @@
-<mat-list>
-  <mat-list-item *ngFor="let publicKey of publicKeys">
-    {{ publicKey }}
-  </mat-list-item>
-</mat-list>
+<mat-card>
+  <mat-card-title>Public keys loaded</mat-card-title>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let publicKey of publicKeys">
+        {{ publicKey }}
+      </mat-list-item>
+    </mat-list>
+
+    <ng-container #validatorsPerformance></ng-container>
+  </mat-card-content>
+</mat-card>

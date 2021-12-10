@@ -1,8 +1,8 @@
 .mat-toolbar {
   color: var(--dappnode-color);
   background-color: var(--toolbar-bg-color);
+  min-height: 5vh;
 }
-
 .mat-toolbar-row,
 .toolbar-media,
 .toolbar-menu {
@@ -15,10 +15,19 @@
     text-decoration: none;
   }
 }
+.toolbar-ethereum {
+  transform: scale(2);
+}
 
 .toolbar-media {
   column-gap: 15px;
 }
 
-.toolbar-menu {
+.mat-sidenav {
+  color: var(--dappnode-color);
+}
+
+.mat-sidenav-content {
+  padding: 5vh;
+  min-height: 82.6vh;
 }
