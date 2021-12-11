@@ -1,0 +1,58 @@
+.nav-bar-ethereum {
+  margin: 30px;
+  transform: scale(2.2);
+}
+
+.nav-bar-media {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  column-gap: 15px;
+  transform: scale(1.2);
+}
+
+.nav-bar-media a {
+  color: inherit;
+  text-decoration: none;
+}
+
+// Deppending on screen size
+@media screen and (max-width: 480px) {
+}
+
+.nav-text {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 8px 0px 8px 16px;
+  list-style: none;
+  height: 60px;
+}
+
+.nav-text a {
+  text-decoration: none;
+  color: var(--dappnode-color);
+  font-size: 18px;
+  width: 95%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-radius: 4px;
+}
+
+.nav-text a:hover {
+  background-color: var(--dappnode-color);
+}
+
+.nav-bar-items {
+  margin: 20px;
+  width: 100%;
+}
+
+hr {
+  width: 80%;
+  color: var(--dappnode-color);
+  border: 0;
+  border-top: 1px solid var(--dappnode-color);
+}
