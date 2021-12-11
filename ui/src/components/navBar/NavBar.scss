@@ -18,6 +18,10 @@
 
 // Deppending on screen size
 @media screen and (max-width: 480px) {
+  .nav-bar-media {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .nav-text {
@@ -50,7 +54,7 @@
   width: 100%;
 }
 
-hr {
+.nav-bar-separator {
   width: 80%;
   color: var(--dappnode-color);
   border: 0;
