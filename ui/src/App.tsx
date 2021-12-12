@@ -1,13 +1,16 @@
 import React from "react";
-import { Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import "./App.scss";
 import NavigationBar from "./components/navBar/Navbar";
+import { loadEnvs } from "./env";
 import Dashboard from "./pages/Dashboard";
 import Help from "./pages/Help";
 import Keymanager from "./pages/Keymanager";
 
 function App() {
+  loadEnvs();
+
   return (
     <>
       <BrowserRouter>
