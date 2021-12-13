@@ -12,10 +12,24 @@
   font-family: "Nunito";
 }
 
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}
+
+.card {
+  background-color: #eee !important;
+  padding: 10px;
+  margin: 10px;
+}
+
 .content {
   padding-left: 180px;
 }
 
+// Nav-bar
 .nav-bar {
   color: var(--dappnode-color);
   background-color: var(--toolbar-bg-color);
@@ -34,6 +48,7 @@
   align-items: center;
 }
 
+// Responsive nav-bar
 @media screen and (max-width: 480px) {
   .nav-bar {
     width: 90px;

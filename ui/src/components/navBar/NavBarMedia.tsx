@@ -3,7 +3,7 @@ import { FaDiscord, FaDiscourse, FaGithub, FaTwitter } from "react-icons/fa";
 
 export default function NavBarMedia() {
   return (
-    <div className="nav-bar-media">
+    <div className="nav-bar-footer-media">
       <a href="https://github.com/dappnode/DAppNodePackage-web3signer-prater">
         <FaGithub />
       </a>

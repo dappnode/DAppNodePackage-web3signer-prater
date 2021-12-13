@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { navBarData } from "./navBarData";
+import NavBarMedia from "./NavBarMedia";
+import { FaEthereum } from "react-icons/fa";
 // import styles
 import "./NavBar.scss";
-import NavBarTitle from "./NavBarTitle";
-import NavBarMedia from "./NavBarMedia";
 
 export default function NavigationBar() {
   const [screenWidth, setScreenWidth] = useState(window.screen.width);
@@ -16,9 +16,12 @@ export default function NavigationBar() {
   }, [screenWidth]);
 
   return (
-    <>
-      <NavBarTitle />
-      <hr className="nav-bar-separator" />
+    <div className="nav-bar">
+      <div className="nav-bar-header">
+        <FaEthereum className="nav-bar-header-logo"></FaEthereum>
+        <hr className="nav-bar-separator" />
+      </div>
+
       <ul className="nav-bar-items">
         {navBarData.map((item, index) => (
           <li key={index} className={item.cname}>
@@ -29,7 +32,11 @@ export default function NavigationBar() {
           </li>
         ))}
       </ul>
-      <NavBarMedia />
-    </>
+
+      <div className="nav-bar-footer">
+        <hr className="nav-bar-separator" />
+        <NavBarMedia />
+      </div>
+    </div>
   );
 }
