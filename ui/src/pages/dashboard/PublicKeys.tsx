@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Card, Spinner } from "react-bootstrap";
+import { Card, Spinner, Table } from "react-bootstrap";
 import { web3Signer } from "../../httpClient";
 import ValidatorPerformance from "./ValidatorPerformance";
+
+const tableKeys = ["address", "status", "slashed", "balance"];
 
 export default function PublicKeys() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -25,11 +27,20 @@ export default function PublicKeys() {
         {loading ? (
           <Spinner animation={"border"} />
         ) : (
-          <>
-            {signerPublicKeys.map((publicKey, index) => {
-              return <ValidatorPerformance key={`${index}`} publicKey={publicKey} />;
-            })}
-          </>
+          <Table>
+            <thead>
+              <tr>
+                {tableKeys.map((key, index) => {
+                  return <th key={index}>{key}</th>;
+                })}
+              </tr>
+            </thead>
+            <tbody>
+              {signerPublicKeys.map((publicKey, index) => {
+                return <ValidatorPerformance key={index} publicKey={publicKey} />;
+              })}
+            </tbody>
+          </Table>
         )}
       </Card.Body>
     </Card>
