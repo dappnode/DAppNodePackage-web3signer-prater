@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Button } from "react-bootstrap";
 import { Card, Spinner } from "react-bootstrap";
 import { web3Signer } from "../../httpClient";
 
@@ -21,6 +22,11 @@ export default function SignerStatus() {
     <Card>
       <Card.Title>Web3signer status</Card.Title>
       <Card.Body>
+        <p>API call to web3signer: http://web3signer:9003/upcheck</p>
+        <Button onClick={getSignerStatus}>Refresh public keys</Button>
+
+        <br />
+        <br />
         {loading ? (
           <Spinner animation={"border"} />
         ) : (

@@ -19,16 +19,13 @@ export default function ValidatorPerformance({ publicKey }: { publicKey: string 
       {loading ? (
         <Spinner animation={"border"} />
       ) : (
-        <div>
-          <p>{publicKey.substring(0, 6)}</p>
-          <Button onClick={getValidatorPerformance}>Get Validator Performance</Button>
-        </div>
-      )}
-      {validatorPerformance && (
         <>
-          <td>{validatorPerformance.data.status}</td>
-          <td>{validatorPerformance.data.slashed}</td>
-          <td>{validatorPerformance.data.balance}</td>
+          <td>{publicKey.substring(0, 6)}</td>
+          <td>
+            <Button onClick={getValidatorPerformance}>Scan</Button>
+          </td>
+          <td>{validatorPerformance && validatorPerformance.data.status}</td>
+          <td>{validatorPerformance && validatorPerformance.data.balance}</td>
         </>
       )}
     </tr>

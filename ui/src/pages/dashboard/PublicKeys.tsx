@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Card, Spinner, Table } from "react-bootstrap";
+import { Button, Card, Spinner, Table } from "react-bootstrap";
 import { web3Signer } from "../../httpClient";
 import ValidatorPerformance from "./ValidatorPerformance";
 
-const tableKeys = ["address", "status", "slashed", "balance"];
+const tableKeys = ["address", "scan", "status", "balance"];
 
 export default function PublicKeys() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -24,10 +24,16 @@ export default function PublicKeys() {
     <Card>
       <Card.Title>Web3signer public keys</Card.Title>
       <Card.Body>
+        <p>API call to web3signer: http://web3signer:9003/api/v1/eth2/publicKeys</p>
+        <Button onClick={getSignerPublicKeys}>Refresh public keys</Button>
+
+        <hr />
+
+        <p>API call to beaconcha prater: https://prater.beaconcha.in/api/v1/validator/:pubkeys</p>
         {loading ? (
           <Spinner animation={"border"} />
         ) : (
-          <Table>
+          <Table responsive striped bordered hover size="sm">
             <thead>
               <tr>
                 {tableKeys.map((key, index) => {
