@@ -25,6 +25,11 @@ body {
   margin: 10px;
 }
 
+.btn {
+  background-color: var(--dappnode-color) !important;
+  border-color: var(--dappnode-color) !important;
+}
+
 .content {
   padding-left: 190px;
 }

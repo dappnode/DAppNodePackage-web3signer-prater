@@ -23,7 +23,7 @@ export default function SignerStatus() {
       <Card.Title>Web3signer status</Card.Title>
       <Card.Body>
         <p>API call to web3signer: http://web3signer:9003/upcheck</p>
-        <Button onClick={getSignerStatus}>Refresh public keys</Button>
+        <Button onClick={getSignerStatus}>Refresh web3signer status</Button>
 
         <br />
         <br />

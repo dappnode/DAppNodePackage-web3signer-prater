@@ -5,7 +5,7 @@ import NavigationBar from "./components/navBar/Navbar";
 import { loadEnvs } from "./env";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Help from "./pages/Help";
-import Keymanager from "./pages/Keymanager";
+import Keymanager from "./pages/keymanager/Keymanager";
 // Styles
 import "./App.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
