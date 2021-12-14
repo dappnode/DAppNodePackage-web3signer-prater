@@ -4,6 +4,8 @@ services:
     image: "ui.web3signer.dnp.dappnode.eth:0.1.0"
     build:
       context: ui
+    volumes:
+      - web3signer_keyfiles:/usr/web3signer/keyfiles
     restart: unless-stopped
   web3signer:
     image: "web3signer.web3signer.dnp.dappnode.eth:0.1.0"
@@ -12,7 +14,7 @@ services:
       args:
         KEYFILES_DIR: /opt/web3signer/keyfiles
         KEYFILES_DIR_TMP: /opt/web3signer/keyfiles_tmp
-        UPSTREAM_VERSION: 21.10.0
+        UPSTREAM_VERSION: 21.10.2
     environment:
       KEYFILES_DIR: /opt/web3signer/keyfiles
       KEYFILES_DIR_TMP: /opt/web3signer/keyfiles_tmp
@@ -26,7 +28,7 @@ services:
     build:
       context: postgres
       args:
-        UPSTREAM_VERSION: 21.10.0
+        UPSTREAM_VERSION: 21.10.2
     image: "postgres.web3signer.dnp.dappnode.eth:0.1.0"
     env_file:
       - ./postgres/.env.postgres
