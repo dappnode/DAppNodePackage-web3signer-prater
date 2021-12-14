@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Card, Form } from "react-bootstrap";
+import { Button, Card, Form, Spinner } from "react-bootstrap";
 import { uploadValidator } from "../../keymanager";
 import fileToDataUri from "../../utils/fileToDataUri";
 import humanFileSize from "../../utils/humanFileSize";
@@ -19,6 +19,7 @@ export default function UploadValidator() {
         uploadValidator({ validatorKeystoreUri: dataUri, password: walletPassword });
         setLoading(false);
       } catch (e) {
+        setLoading(false);
         console.error(`Error generating validator `, e);
       }
     }
@@ -56,6 +57,8 @@ export default function UploadValidator() {
             Upload
           </Button>
         </Form>
+
+        {loading && <Spinner animation={"border"} />}
       </Card.Body>
     </Card>
   );

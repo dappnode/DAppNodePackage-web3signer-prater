@@ -14,10 +14,15 @@ export default function PublicKeys() {
   }, []);
 
   async function getSignerPublicKeys(): Promise<void> {
-    setLoading(true);
-    const publicKeys = await web3Signer.getSignerPublicKeys();
-    setSignerPublicKeys(publicKeys);
-    setLoading(false);
+    try {
+      setLoading(true);
+      const publicKeys = await web3Signer.getSignerPublicKeys();
+      setSignerPublicKeys(publicKeys);
+      setLoading(false);
+    } catch (e) {
+      console.error(e);
+      setLoading(false);
+    }
   }
 
   return (

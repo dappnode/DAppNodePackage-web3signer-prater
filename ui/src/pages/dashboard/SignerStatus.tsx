@@ -8,10 +8,15 @@ export default function SignerStatus() {
   const [signerStatus, setSignerStatus] = useState<string>("");
 
   async function getSignerStatus(): Promise<void> {
-    setLoading(true);
-    const status = await web3Signer.getSignerStatus();
-    setSignerStatus(status);
-    setLoading(false);
+    try {
+      setLoading(true);
+      const status = await web3Signer.getSignerStatus();
+      setSignerStatus(status);
+      setLoading(false);
+    } catch (e) {
+      console.error(e);
+      setLoading(false);
+    }
   }
 
   useEffect(() => {

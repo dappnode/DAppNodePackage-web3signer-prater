@@ -8,10 +8,15 @@ export default function ValidatorPerformance({ publicKey }: { publicKey: string 
   const [validatorPerformance, setValidatorPerformance] = useState<ValidatorResponse | null>(null);
 
   async function getValidatorPerformance(): Promise<void> {
-    setLoading(true);
-    const performance = await beaconcha.getValidator(publicKey);
-    setValidatorPerformance(performance);
-    setLoading(false);
+    try {
+      setLoading(true);
+      const performance = await beaconcha.getValidator(publicKey);
+      setValidatorPerformance(performance);
+      setLoading(false);
+    } catch (e) {
+      console.error(e);
+      setLoading(false);
+    }
   }
 
   return (
