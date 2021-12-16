@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:14.17.6-alpine as build
 ENV NODE_ENV production
 # Add a work directory
 WORKDIR /app
@@ -11,6 +11,8 @@ COPY . .
 # Build the app
 RUN yarn build
 
+# production environment
+FROM nginx:stable-alpine
+COPY --from=build /app/build /usr/share/nginx/html
 EXPOSE 80
-# Start nginx
-CMD ["yarn", "start"]
+CMD ["nginx", "-g", "daemon off;"]

@@ -5,7 +5,7 @@ services:
     build:
       context: ui
     volumes:
-      - web3signer_keyfiles:/usr/web3signer/keyfiles
+      - "web3signer_keyfiles:/usr/web3signer/keyfiles"
     restart: unless-stopped
   web3signer:
     image: "web3signer.web3signer.dnp.dappnode.eth:0.1.0"
@@ -18,8 +18,6 @@ services:
     environment:
       KEYFILES_DIR: /opt/web3signer/keyfiles
       KEYFILES_DIR_TMP: /opt/web3signer/keyfiles_tmp
-    ports:
-      - "9003:9000"
     volumes:
       - "web3signer_keyfiles:/opt/web3signer/keyfiles"
       - "web3signer_keyfiles_tmp:/opt/web3signer/keyfiles_tmp"
