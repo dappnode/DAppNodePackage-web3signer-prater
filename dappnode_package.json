@@ -7,6 +7,9 @@
   "shortDescription": "web3signer",
   "description": "",
   "type": "service",
+  "requirements": {
+    "minimumDappnodeVersion": "0.2.51"
+  },
   "author": "mgarciate <mgarciate@gmail.com> (https://github.com/mgarciate)",
   "contributors": [
     "mgarciate <mgarciate@gmail.com> (https://github.com/mgarciate)",
