@@ -79,7 +79,7 @@ exec /opt/web3signer/bin/web3signer \
   --metrics-host-allowlist="*" \
   eth2 \
   --network=prater \
-  --slashing-protection-db-url=jdbc:postgresql://postgres.web3signer-prater.dappnode:5432/web3signer \
+  --slashing-protection-db-url=jdbc:postgresql://postgres.web3signer-prater.dappnode:5432/web3signer-prater \
   --slashing-protection-db-username=postgres \
   --slashing-protection-db-password=prater \
   --key-manager-api-enabled=true \
