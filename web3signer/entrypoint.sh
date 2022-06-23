@@ -11,24 +11,28 @@ case "$ETH2_CLIENT" in
   export BEACON_NODE_API="http://beacon-chain.prysm-prater.dappnode:3500"
   export CLIENT_API="http://validator.prysm-prater.dappnode:3500"
   export TOKEN_FILE="/security/prysm/auth-token"
+  export CLIENTS_TO_REMOVE=(teku lighthouse nimbus)
   ;;
 "teku")
   ETH2_CLIENT_DNS="validator.teku-prater.dappnode"
   export BEACON_NODE_API="http://beacon-chain.teku-prater.dappnode:3500"
   export CLIENT_API="https://validator.teku-prater.dappnode:3500"
   export TOKEN_FILE="/security/teku/validator-api-bearer"
+  export CLIENTS_TO_REMOVE=(prysm lighthouse nimbus)
   ;;
 "lighthouse")
   ETH2_CLIENT_DNS="validator.lighthouse-prater.dappnode"
   export BEACON_NODE_API="http://beacon-chain.lighthouse-prater.dappnode:3500"
   export CLIENT_API="http://validator.lighthouse-prater.dappnode:3500"
   export TOKEN_FILE="/security/lighthouse/api-token.txt"
+  export CLIENTS_TO_REMOVE=(teku prysm nimbus)
   ;;
 "nimbus")
   ETH2_CLIENT_DNS="beacon-validator.nimbus-prater.dappnode"
   export BEACON_NODE_API="http://beacon-validator.nimbus-prater.dappnode:4500"
   export CLIENT_API="http://beacon-validator.nimbus-prater.dappnode:3500"
   export TOKEN_FILE="/security/nimbus/auth-token"
+  export CLIENTS_TO_REMOVE=(teku lighthouse prysm)
   ;;
 *)
   echo "ETH2_CLIENT env is not set propertly"
@@ -53,6 +57,9 @@ env >>/etc/environment
 
 # IMPORTANT! The dir defined for --key-store-path must exist and have specific permissions. Should not be created with a docker volume
 mkdir -p "$KEYFILES_DIR"
+
+# delete all the pubkeys from the all the clients (excluding the client selected)
+/usr/bin/delete-keys.sh
 
 # start watch-keys and disown it
 inotifywait -e modify,create,delete -r "$KEYFILES_DIR" && /usr/bin/reload-keys.sh &
