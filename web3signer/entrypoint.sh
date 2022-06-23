@@ -59,7 +59,7 @@ env >>/etc/environment
 mkdir -p "$KEYFILES_DIR"
 
 # delete all the pubkeys from the all the clients (excluding the client selected)
-/usr/bin/delete-keys.sh
+/usr/bin/delete-keys.sh "${CLIENTS_TO_REMOVE[@]}"
 
 # start watch-keys and disown it
 inotifywait -e modify,create,delete -r "$KEYFILES_DIR" && /usr/bin/reload-keys.sh &
