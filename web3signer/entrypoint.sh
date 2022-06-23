@@ -30,9 +30,6 @@ case "$ETH2_CLIENT" in
   export CLIENT_API="http://beacon-validator.nimbus-prater.dappnode:3500"
   export TOKEN_FILE="/security/nimbus/auth-token"
   ;;
-"all")
-  ETH2_CLIENT_DNS="*"
-  ;;
 *)
   echo "ETH2_CLIENT env is not set propertly"
   exit 1
