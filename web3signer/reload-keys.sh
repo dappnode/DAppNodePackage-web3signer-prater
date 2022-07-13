@@ -45,7 +45,7 @@ function response_middleware() {
 }
 
 function send_dappmanager_notification() {
-  curl -X POST -G 'http://my.dappnode/notification-send' --data-urlencode 'type=danger' --data-urlencode title="$ETH2_CLIENT is not available" --data-urlencode 'body=Make sure you select an available client in the web3signer at packages > web3signer > config > eth2client'
+  curl -X POST -G 'http://my.dappnode/notification-send' --data-urlencode 'type=danger' --data-urlencode title="$ETH2_CLIENT is not available" --data-urlencode 'body=Make sure you select an available client in the web3signer at packages > web3signer prater > config > Prater Chain Consensus Layer Client'
 }
 
 ##################
@@ -140,9 +140,16 @@ function get_client_pubkeys() {
 #     }
 #   ]
 # }
-function post_client_pubkey() {
+function post_client_pubkeys() {
   local request response http_code content
-  request='{"remote_keys": [{"pubkey": "'${1}'", "url": "'${WEB3SIGNER_API}'"}]}'
+
+  request="{\"remote_keys\": ["
+  for pubkey in "${@}"; do
+    request+="{\"pubkey\": \"$pubkey\", \"url\": \"${WEB3SIGNER_API}\"},"
+  done
+  request=${request::-1}
+  request+="]}"
+
   response=$(curl -s -w "%{http_code}" ${CERT_REQUEST} -X POST -H "Authorization: Bearer ${AUTH_TOKEN}" -H "Content-Type: application/json" --data "${request}" "${CLIENT_API}/eth/v1/remotekeys")
   http_code=${response: -3}
   content=$(echo "${response}" | head -c-4)
@@ -157,9 +164,9 @@ function post_client_pubkey() {
 #     "0x93247f2209abcacf57b75a51dafae777f9dd38bc7053d1af526f220a7489a6d3a2753e5f3e8b1cfe39b56f43611df74a"
 #   ]
 # }
-function delete_client_pubkey() {
+function delete_client_pubkeys() {
   local request response http_code content
-  request='{"pubkeys": ["'${1}'"]}'
+  request="{\"pubkeys\": [${1}]}"
   response=$(curl -s -w "%{http_code}" ${CERT_REQUEST} -X DELETE -H "Authorization: Bearer ${AUTH_TOKEN}" -H "Content-Type: application/json" --data "${request}" "${CLIENT_API}/eth/v1/remotekeys")
   http_code=${response: -3}
   content=$(echo "${response}" | head -c-4)
@@ -178,13 +185,18 @@ function compare_public_keys() {
   # Delete pubkeys if necessary
   local pubkeys_to_delete
   for pubkey in "${CLIENT_PUBKEYS[@]}"; do
-    [[ ! " ${WEB3SIGNER_PUBKEYS[*]} " =~ ${pubkey} ]] && pubkeys_to_delete+=("${pubkey}")
+    if [[ ! " ${WEB3SIGNER_PUBKEYS[*]} " =~ ${pubkey} ]]; then
+      # pubkeys_to_delete must be in format: "pubkey1","pubkey2","pubkey3"...
+      pubkeys_to_delete+="\"${pubkey}\","
+    fi
   done
-  if [[ ${#pubkeys_to_delete[@]} -ne 0 ]]; then
-    for pubkey in "${pubkeys_to_delete[@]}"; do
-      log info "deleting pubkey ${pubkey}"
-      delete_client_pubkey "${pubkey}"
-    done
+
+  if [[ -n "${pubkeys_to_delete}" ]]; then
+    if [[ ${pubkeys_to_delete: -1} == "," ]]; then
+      pubkeys_to_delete=${pubkeys_to_delete::-1}
+    fi
+    log info "deleting pubkeys ${pubkeys_to_delete}"
+    delete_client_pubkeys "${pubkeys_to_delete}"
   else
     log debug "no pubkeys to delete"
   fi
@@ -195,10 +207,8 @@ function compare_public_keys() {
     [[ ! " ${CLIENT_PUBKEYS[*]} " =~ ${pubkey} ]] && pubkeys_to_import+=("${pubkey}")
   done
   if [[ ${#pubkeys_to_import[@]} -ne 0 ]]; then
-    for pubkey in "${pubkeys_to_import[@]}"; do
-      log info "importing pubkey ${pubkey}"
-      post_client_pubkey "${pubkey}"
-    done
+    log info "importing pubkeys ${pubkeys_to_import[*]}"
+    post_client_pubkeys ${pubkeys_to_import[*]}
   else
     log debug "no pubkeys to import"
   fi

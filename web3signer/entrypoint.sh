@@ -55,18 +55,22 @@ fi
 # Loads envs into /etc/environment to be used by the reload-keys.sh script
 env >>/etc/environment
 
-# IMPORTANT! The dir defined for --key-store-path must exist and have specific permissions. Should not be created with a docker volume
-mkdir -p "$KEYFILES_DIR"
-
-# Implement manual migration if required
-inotifywait -e create -r /opt/web3signer/manual_migration && /usr/bin/manual-migration.sh &
-disown
-
 # delete all the pubkeys from the all the clients (excluding the client selected)
 /usr/bin/delete-keys.sh "${CLIENTS_TO_REMOVE[@]}"
 
-# start watch-keys and disown it
-inotifywait -e modify,create,delete -r "$KEYFILES_DIR" && /usr/bin/reload-keys.sh &
+# IMPORTANT! The dir defined for --key-store-path must exist and have specific permissions. Should not be created with a docker volume
+mkdir -p "$KEYFILES_DIR"
+
+# inotify manual migration
+while inotifywait -e close_write --include 'backup\.zip' /opt/web3signer; do
+  /usr/bin/manual-migration.sh
+done &
+disown
+
+# inotify reload keys
+while inotifywait -r -e modify,create,delete "$KEYFILES_DIR"; do
+  /usr/bin/reload-keys.sh
+done &
 disown
 
 # start cron
@@ -85,6 +89,7 @@ exec /opt/web3signer/bin/web3signer \
   --metrics-host 0.0.0.0 \
   --metrics-port 9091 \
   --metrics-host-allowlist="*" \
+  --idle-connection-timeout-seconds=90 \
   eth2 \
   --network=prater \
   --slashing-protection-db-url=jdbc:postgresql://postgres.web3signer-prater.dappnode:5432/web3signer \
