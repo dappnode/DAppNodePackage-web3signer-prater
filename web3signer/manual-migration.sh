@@ -10,10 +10,10 @@ set -eo pipefail
 ERROR="[ ERROR-migration ]"
 INFO="[ INFO-migration ]"
 
-MANUAL_MIGRATION_DIR="/opt/web3signer/manual_migration"
+WORKDIR="/opt/web3signer"
+MANUAL_MIGRATION_DIR="${WORKDIR}/manual_migration"
 BACKUP_FILE="${MANUAL_MIGRATION_DIR}/backup.zip"
 BACKUP_WALLETPASSWORD_FILE="${MANUAL_MIGRATION_DIR}/walletpassword.txt"
-REQUEST_BODY_FILE="${MANUAL_MIGRATION_DIR}/request_body.json"
 
 #############
 # FUNCTIONS #
@@ -21,6 +21,10 @@ REQUEST_BODY_FILE="${MANUAL_MIGRATION_DIR}/request_body.json"
 
 # Ensure files needed for migration exists
 function extract_files() {
+  mkdir -p "${MANUAL_MIGRATION_DIR}"
+
+  mv ${WORKDIR}/backup.zip ${BACKUP_FILE}
+
   # Check if wallet password file exists
   if [ ! -f "${BACKUP_FILE}" ]; then
     {
@@ -43,7 +47,7 @@ function ensure_requirements() {
   # Check if web3signer is available: https://consensys.github.io/web3signer/web3signer-eth2.html#tag/Server-Status
   if [ "$(curl -s -X GET \
     -H "Content-Type: application/json" \
-    -H "Host: prysm.migration-gnosis.dappnode" \
+    -H "Host: prysm.migration-prater.dappnode" \
     --write-out '%{http_code}' \
     --silent \
     --output /dev/null \
@@ -61,36 +65,15 @@ function ensure_requirements() {
   fi
 }
 
-# Create request body file
-# - It cannot be used as environment variable because the slashing data might be too big resulting in the error: Error list too many arguments
-# - Exit if request body file cannot be created
-function create_request_body_file() {
-  echo '{}' | jq '{ keystores: [], passwords: [] }' >"$REQUEST_BODY_FILE"
-  KEYSTORE_FILES=($(ls "${MANUAL_MIGRATION_DIR}"/*.json))
-  for KEYSTORE_FILE in "${KEYSTORE_FILES[@]}"; do
-    echo $(jq --slurpfile keystore ${KEYSTORE_FILE} '.keystores += [$keystore[0]|tojson]' ${REQUEST_BODY_FILE}) >${REQUEST_BODY_FILE}
-    echo $(jq --arg walletpassword "$(cat ${BACKUP_WALLETPASSWORD_FILE})" '.passwords += [$walletpassword]' ${REQUEST_BODY_FILE}) >${REQUEST_BODY_FILE}
-  done
-}
-
 # Import validators with request body file
 # - Docs: https://consensys.github.io/web3signer/web3signer-eth2.html#operation/KEYMANAGER_IMPORT
 function import_validators() {
-  curl -X POST \
-    -d @"${REQUEST_BODY_FILE}" \
-    --retry 60 \
-    --retry-delay 3 \
-    --retry-all-errors \
-    -H "Content-Type: application/json" \
-    -H "Accept: application/json" \
-    -H "Host: prysm.migration-gnosis.dappnode" \
-    "${WEB3SIGNER_API}"/eth/v1/keystores
-
+  import-one-by-one --keystores-path "$MANUAL_MIGRATION_DIR" --wallet-password-path "$BACKUP_WALLETPASSWORD_FILE" --network prater
   echo "${INFO} validators imported"
 }
 
 function empty_migration_dir() {
-  rm -rf "${MANUAL_MIGRATION_DIR}/*"
+  rm -rf ${MANUAL_MIGRATION_DIR}/*
 }
 
 ########
@@ -106,11 +89,10 @@ trap 'error_handling' ERR
 
 echo "${INFO} extracting files"
 extract_files
-echo "${INFO} creating request body"
-create_request_body_file
 echo "${INFO} ensuring requirements"
 ensure_requirements
 echo "${INFO} importing validators"
 import_validators
-
+echo "${INFO} cleaning files"
+empty_migration_dir
 exit 0
