@@ -4,8 +4,8 @@ export KEYFILES_DIR="/opt/web3signer/keyfiles"
 export NETWORK="prater"
 export WEB3SIGNER_API="http://web3signer.web3signer-${NETWORK}.dappnode:9000"
 
-# Assign proper value to CONSENSUS_CLIENT_PRATER. The UI uses the web3signer domain in the Header "Host"
-case "$CONSENSUS_CLIENT_PRATER" in
+# Assign proper value to _DAPPNODE_GLOBAL_CONSENSUS_CLIENT_PRATER. The UI uses the web3signer domain in the Header "Host"
+case "$_DAPPNODE_GLOBAL_CONSENSUS_CLIENT_PRATER" in
 "prysm-prater.dnp.dappnode.eth")
   ETH2_CLIENT_DNS="validator.prysm-prater.dappnode"
   export BEACON_NODE_API="http://beacon-chain.prysm-prater.dappnode:3500"
@@ -35,7 +35,7 @@ case "$CONSENSUS_CLIENT_PRATER" in
   export CLIENTS_TO_REMOVE=(teku lighthouse prysm)
   ;;
 *)
-  echo "CONSENSUS_CLIENT_PRATER env is not set propertly"
+  echo "_DAPPNODE_GLOBAL_CONSENSUS_CLIENT_PRATER env is not set propertly"
   exit 1
   ;;
 esac
