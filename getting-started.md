@@ -1,5 +1,9 @@
-## Welcome to your web3signer:
+## Welcome to the Web3signer for Göerli/Prater:
 
-- This is the entrypoint for handling your validator keystores
-- Web3signer takes care for signing requests of your validator
-- Web3signer supports client diversity, working with different clients such as [Prysm-prater](http://my.dappnode/#/installer/prysm-prater.dnp.dappnode.eth), [Lighthouse-prater](http://my.dappnode/#/installer/lighthouse-prater.dnp.dappnode.eth), [Teku-prater](http://my.dappnode/#/installer/teku-prater.dnp.dappnode.eth) and [Nimbus-prater](http://my.dappnode/#/installer/nimbus-prater.dnp.dappnode.eth)
+- This package is the entrypoint for handling your validator keystores
+- The Web3signer takes care of signing requests for your validator, so that your Consensus Layer (CL) client can be changed with just a few clicks.
+- The Web3signer supports client diversity in this way; working with different clients such as: 
+   - [Prysm-Prater](http://my.dappnode/#/installer/prysm-prater.dnp.dappnode.eth)
+   - [Lighthouse-Prater](http://my.dappnode/#/installer/lighthouse-prater.dnp.dappnode.eth)
+   - [Teku-Prater](http://my.dappnode/#/installer/teku-prater.dnp.dappnode.eth) 
+   - [Nimbus-Prater](http://my.dappnode/#/installer/nimbus-prater.dnp.dappnode.eth)
