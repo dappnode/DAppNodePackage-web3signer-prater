@@ -4,30 +4,30 @@ export KEYFILES_DIR="/opt/web3signer/keyfiles"
 export NETWORK="prater"
 export WEB3SIGNER_API="http://web3signer.web3signer-${NETWORK}.dappnode:9000"
 
-# Assign proper value to ETH2_CLIENT. The UI uses the web3signer domain in the Header "Host"
-case "$ETH2_CLIENT" in
-"prysm")
+# Assign proper value to _DAPPNODE_GLOBAL_CONSENSUS_CLIENT_PRATER. The UI uses the web3signer domain in the Header "Host"
+case "$_DAPPNODE_GLOBAL_CONSENSUS_CLIENT_PRATER" in
+"prysm-prater.dnp.dappnode.eth")
   ETH2_CLIENT_DNS="validator.prysm-prater.dappnode"
   export BEACON_NODE_API="http://beacon-chain.prysm-prater.dappnode:3500"
   export CLIENT_API="http://validator.prysm-prater.dappnode:3500"
   export TOKEN_FILE="/security/prysm/auth-token"
   export CLIENTS_TO_REMOVE=(teku lighthouse nimbus)
   ;;
-"teku")
+"teku-prater.dnp.dappnode.eth")
   ETH2_CLIENT_DNS="validator.teku-prater.dappnode"
   export BEACON_NODE_API="http://beacon-chain.teku-prater.dappnode:3500"
   export CLIENT_API="https://validator.teku-prater.dappnode:3500"
   export TOKEN_FILE="/security/teku/validator-api-bearer"
   export CLIENTS_TO_REMOVE=(prysm lighthouse nimbus)
   ;;
-"lighthouse")
+"lighthouse-prater.dnp.dappnode.eth")
   ETH2_CLIENT_DNS="validator.lighthouse-prater.dappnode"
   export BEACON_NODE_API="http://beacon-chain.lighthouse-prater.dappnode:3500"
   export CLIENT_API="http://validator.lighthouse-prater.dappnode:3500"
   export TOKEN_FILE="/security/lighthouse/api-token.txt"
   export CLIENTS_TO_REMOVE=(teku prysm nimbus)
   ;;
-"nimbus")
+"nimbus-prater.dnp.dappnode.eth")
   ETH2_CLIENT_DNS="beacon-validator.nimbus-prater.dappnode"
   export BEACON_NODE_API="http://beacon-validator.nimbus-prater.dappnode:4500"
   export CLIENT_API="http://beacon-validator.nimbus-prater.dappnode:3500"
@@ -35,7 +35,7 @@ case "$ETH2_CLIENT" in
   export CLIENTS_TO_REMOVE=(teku lighthouse prysm)
   ;;
 *)
-  echo "ETH2_CLIENT env is not set propertly"
+  echo "_DAPPNODE_GLOBAL_CONSENSUS_CLIENT_PRATER env is not set propertly"
   exit 1
   ;;
 esac

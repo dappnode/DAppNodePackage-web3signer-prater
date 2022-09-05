@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[[ "${ETH2_CLIENT}" == "teku" ]] && CERT_REQUEST="-k --cert-type P12 --cert /security/teku/cert/teku_client_keystore.p12:dappnode"
+[[ "${_DAPPNODE_GLOBAL_CONSENSUS_CLIENT_PRATER}" == "teku-prater.dnp.dappnode.eth" ]] && CERT_REQUEST="-k --cert-type P12 --cert /security/teku/cert/teku_client_keystore.p12:dappnode"
 
 # Log level function: $1 = logType $2 = message
 function log {
@@ -45,7 +45,7 @@ function response_middleware() {
 }
 
 function send_dappmanager_notification() {
-  curl -X POST -G 'http://my.dappnode/notification-send' --data-urlencode 'type=danger' --data-urlencode title="$ETH2_CLIENT is not available" --data-urlencode 'body=Make sure you select an available client in the web3signer at packages > web3signer prater > config > Prater Chain Consensus Layer Client'
+  curl -X POST -G 'http://my.dappnode/notification-send' --data-urlencode 'type=danger' --data-urlencode title="$_DAPPNODE_GLOBAL_CONSENSUS_CLIENT_PRATER is not available" --data-urlencode 'body=Make sure you select an available client in the web3signer at packages > web3signer prater > config > Prater Chain Consensus Layer Client'
 }
 
 ##################
@@ -125,7 +125,7 @@ function get_client_pubkeys() {
   response=$(curl -s -w "%{http_code}" ${CERT_REQUEST} -X GET -H "Authorization: Bearer ${AUTH_TOKEN}" -H "Content-Type: application/json" "${CLIENT_API}/eth/v1/remotekeys")
   http_code=${response: -3}
   content=$(echo "${response}" | head -c-4)
-  response_middleware "$http_code" "$content" "$ETH2_CLIENT"
+  response_middleware "$http_code" "$content" "$_DAPPNODE_GLOBAL_CONSENSUS_CLIENT_PRATER"
   CLIENT_PUBKEYS=($(echo "${content}" | jq -r 'try .data[].pubkey'))
 }
 
@@ -153,7 +153,7 @@ function post_client_pubkeys() {
   response=$(curl -s -w "%{http_code}" ${CERT_REQUEST} -X POST -H "Authorization: Bearer ${AUTH_TOKEN}" -H "Content-Type: application/json" --data "${request}" "${CLIENT_API}/eth/v1/remotekeys")
   http_code=${response: -3}
   content=$(echo "${response}" | head -c-4)
-  response_middleware "$http_code" "$content" "$ETH2_CLIENT"
+  response_middleware "$http_code" "$content" "$_DAPPNODE_GLOBAL_CONSENSUS_CLIENT_PRATER"
 }
 
 # Delete public keys from client keymanager API
@@ -170,7 +170,7 @@ function delete_client_pubkeys() {
   response=$(curl -s -w "%{http_code}" ${CERT_REQUEST} -X DELETE -H "Authorization: Bearer ${AUTH_TOKEN}" -H "Content-Type: application/json" --data "${request}" "${CLIENT_API}/eth/v1/remotekeys")
   http_code=${response: -3}
   content=$(echo "${response}" | head -c-4)
-  response_middleware "$http_code" "$content" "$ETH2_CLIENT"
+  response_middleware "$http_code" "$content" "$_DAPPNODE_GLOBAL_CONSENSUS_CLIENT_PRATER"
 }
 
 #########
@@ -236,7 +236,7 @@ log debug "starting cron"
 get_beacon_status # IS_BEACON_SYNCING
 log debug "beacon node syncing status: ${IS_BEACON_SYNCING}"
 if [[ "${IS_BEACON_SYNCING}" == "true" ]]; then
-  log info "beacon node is syncing, ${ETH2_CLIENT} API is not available, skipping public key comparison"
+  log info "beacon node is syncing, ${_DAPPNODE_GLOBAL_CONSENSUS_CLIENT_PRATER} API is not available, skipping public key comparison"
   exit 0
 fi
 
