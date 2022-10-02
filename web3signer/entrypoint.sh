@@ -92,7 +92,6 @@ exec /opt/web3signer/bin/web3signer \
   --http-listen-host=0.0.0.0 \
   --http-host-allowlist="web3signer.web3signer-prater.dappnode,ui.web3signer-prater.dappnode,prysm.migration-prater.dappnode,$ETH2_CLIENT_DNS" \
   --http-cors-origins=* \
-  --metrics-enabled=true \
   --metrics-host 0.0.0.0 \
   --metrics-port 9091 \
   --metrics-host-allowlist="*" \

@@ -18,6 +18,7 @@ services:
         UPSTREAM_VERSION: 22.8.1
     environment:
       LOG_TYPE: INFO
+      WEB3SIGNER_METRICS_ENABLED: "true"
       EXTRA_OPTS: ""
     volumes:
       - "web3signer_data:/data"
