@@ -11,28 +11,35 @@ case "$_DAPPNODE_GLOBAL_CONSENSUS_CLIENT_PRATER" in
   export BEACON_NODE_API="http://beacon-chain.prysm-prater.dappnode:3500"
   export CLIENT_API="http://validator.prysm-prater.dappnode:3500"
   export TOKEN_FILE="/security/prysm/auth-token"
-  export CLIENTS_TO_REMOVE=(teku lighthouse nimbus)
+  export CLIENTS_TO_REMOVE=(teku lighthouse lodestar nimbus)
   ;;
 "teku-prater.dnp.dappnode.eth")
   ETH2_CLIENT_DNS="validator.teku-prater.dappnode"
   export BEACON_NODE_API="http://beacon-chain.teku-prater.dappnode:3500"
   export CLIENT_API="https://validator.teku-prater.dappnode:3500"
   export TOKEN_FILE="/security/teku/validator-api-bearer"
-  export CLIENTS_TO_REMOVE=(prysm lighthouse nimbus)
+  export CLIENTS_TO_REMOVE=(prysm lighthouse lodestar nimbus)
   ;;
 "lighthouse-prater.dnp.dappnode.eth")
   ETH2_CLIENT_DNS="validator.lighthouse-prater.dappnode"
   export BEACON_NODE_API="http://beacon-chain.lighthouse-prater.dappnode:3500"
   export CLIENT_API="http://validator.lighthouse-prater.dappnode:3500"
   export TOKEN_FILE="/security/lighthouse/api-token.txt"
-  export CLIENTS_TO_REMOVE=(teku prysm nimbus)
+  export CLIENTS_TO_REMOVE=(teku prysm lodestar nimbus)
   ;;
 "nimbus-prater.dnp.dappnode.eth")
   ETH2_CLIENT_DNS="beacon-validator.nimbus-prater.dappnode"
   export BEACON_NODE_API="http://beacon-validator.nimbus-prater.dappnode:4500"
   export CLIENT_API="http://beacon-validator.nimbus-prater.dappnode:3500"
   export TOKEN_FILE="/security/nimbus/auth-token"
-  export CLIENTS_TO_REMOVE=(teku lighthouse prysm)
+  export CLIENTS_TO_REMOVE=(teku lighthouse lodestar prysm)
+  ;;
+"lodestar-prater.dnp.dappnode.eth")
+  ETH2_CLIENT_DNS="validator.lodestar-prater.dappnode"
+  export BEACON_NODE_API="http://beacon-chain.lodestar-prater.dappnode:3500"
+  export CLIENT_API="http://validator.lodestar-prater.dappnode:3500"
+  export TOKEN_FILE="/security/lodestar/auth-token"
+  export CLIENTS_TO_REMOVE=(teku lighthouse prysm nimbus)
   ;;
 *)
   echo "_DAPPNODE_GLOBAL_CONSENSUS_CLIENT_PRATER env is not set propertly"
