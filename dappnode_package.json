@@ -30,5 +30,8 @@
   "requirements": {
     "minimumDappnodeVersion": "0.2.58"
   },
-  "globalEnvs": [{ "envs": ["CONSENSUS_CLIENT_PRATER", "EXECUTION_CLIENT_PRATER"], "services": ["web3signer", "ui"] }]
+  "globalEnvs": [
+    { "envs": ["CONSENSUS_CLIENT_PRATER", "EXECUTION_CLIENT_PRATER"], "services": ["ui"] },
+    { "envs": ["CONSENSUS_CLIENT_PRATER"], "services": ["web3signer"] }
+  ]
 }
