@@ -1,6 +1,6 @@
 {
   "name": "web3signer-prater.dnp.dappnode.eth",
-  "version": "0.1.0",
+  "version": "0.1.12",
   "upstreamVersion": "22.8.1",
   "architectures": ["linux/amd64"],
   "upstreamRepo": "ConsenSys/web3signer",
@@ -22,7 +22,7 @@
     "url": "https://github.com/dappnode/DAppNodePackage-web3signer-prater/issues"
   },
   "links": {
-    "ui": "http://ui.web3signer-prater.dappnode?signer_url=http://web3signer.web3signer-prater.dappnode:9000",
+    "ui": "http://ui.web3signer-prater.dappnode",
     "homepage": "https://docs.web3signer.consensys.net/en/latest/",
     "readme": "https://github.com/ConsenSys/web3signer/blob/master/README.md"
   },
@@ -30,5 +30,5 @@
   "requirements": {
     "minimumDappnodeVersion": "0.2.58"
   },
-  "globalEnvs": [{ "envs": ["CONSENSUS_CLIENT_PRATER"], "services": ["web3signer"] }]
+  "globalEnvs": [{ "envs": ["CONSENSUS_CLIENT_PRATER", "EXECUTION_CLIENT_PRATER"], "services": ["web3signer", "ui"] }]
 }
