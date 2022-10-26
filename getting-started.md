@@ -7,3 +7,4 @@
    - [Lighthouse-Prater](http://my.dappnode/#/installer/lighthouse-prater.dnp.dappnode.eth)
    - [Teku-Prater](http://my.dappnode/#/installer/teku-prater.dnp.dappnode.eth) 
    - [Nimbus-Prater](http://my.dappnode/#/installer/nimbus-prater.dnp.dappnode.eth)
+- All Staking Management is now in the Comprehensive [StakersUI](http://my.dappnode/#/stakers/prater)
