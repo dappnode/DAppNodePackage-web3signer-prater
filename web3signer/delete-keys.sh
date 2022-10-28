@@ -19,6 +19,12 @@ for client in "${CLIENTS_TO_REMOVE[@]}"; do
     TOKEN_FILE="/security/lighthouse/api-token.txt"
     CERT_REQUEST=""
     ;;
+  "lodestar")
+    CLIENT_API="http://validator.lodestar-prater.dappnode:3500"
+   # TOKEN_FILE="/security/lodestar/auth-token"
+    TOKEN_FILE=""
+    CERT_REQUEST=""
+    ;;
   "nimbus")
     CLIENT_API="http://beacon-validator.nimbus-prater.dappnode:3500"
     TOKEN_FILE="/security/nimbus/auth-token"
@@ -31,6 +37,7 @@ for client in "${CLIENTS_TO_REMOVE[@]}"; do
   esac
 
   # Get the token
+  # Deal with Lodestar no token file situation
   if [[ -f ${TOKEN_FILE} ]]; then
     AUTH_TOKEN=$(cat "${TOKEN_FILE}")
     if [[ -z ${AUTH_TOKEN} ]]; then
