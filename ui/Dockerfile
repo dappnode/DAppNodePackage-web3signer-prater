@@ -2,10 +2,6 @@ FROM ghcr.io/dappnode/keymanager-ui:0.1.1 as build
 
 FROM nginx:1.21.6-alpine
 
-# Nginx config
-RUN rm -rf /etc/nginx/conf.d
-COPY conf /etc/nginx
-
 # Static build
 COPY --from=build /app/build /usr/share/nginx/html/
 

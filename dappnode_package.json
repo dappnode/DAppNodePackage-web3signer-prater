@@ -1,6 +1,6 @@
 {
   "name": "web3signer-prater.dnp.dappnode.eth",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "upstreamVersion": "22.10.0",
   "architectures": ["linux/amd64"],
   "upstreamRepo": "ConsenSys/web3signer",
@@ -11,7 +11,8 @@
   "author": "DAppNode Association <admin@dappnode.io> (https://github.com/dappnode)",
   "contributors": [
     "mgarciate <mgarciate@gmail.com> (https://github.com/mgarciate)",
-    "pablomendezroyo <mendez4a@gmail.com> (https://github.com/pablomendezroyo"
+    "pablomendezroyo <mendez4a@gmail.com> (https://github.com/pablomendezroyo",
+    "dsimog <diego@dappnode.io> (https://github.com/dsimog01)"
   ],
   "categories": ["Blockchain", "ETH2.0"],
   "repository": {
@@ -31,7 +32,10 @@
     "minimumDappnodeVersion": "0.2.58"
   },
   "globalEnvs": [
-    { "envs": ["CONSENSUS_CLIENT_PRATER", "EXECUTION_CLIENT_PRATER"], "services": ["ui"] },
+    {
+      "envs": ["CONSENSUS_CLIENT_PRATER", "EXECUTION_CLIENT_PRATER"],
+      "services": ["ui"]
+    },
     { "envs": ["CONSENSUS_CLIENT_PRATER"], "services": ["web3signer"] }
   ]
 }
