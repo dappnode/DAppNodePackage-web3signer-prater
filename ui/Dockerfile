@@ -1,8 +1,27 @@
-FROM ghcr.io/dappnode/keymanager-ui:0.1.0 as build
+FROM ghcr.io/dappnode/keymanager-ui:0.1.1 as build
 
-ENV REACT_APP_NETWORK=prater
-ENV REACT_APP_WEB3SIGNER_API_URL=http://web3signer.web3signer-prater.dappnode:9000/
+FROM nginx:1.21.6-alpine
 
-COPY entrypoint.sh /usr/bin/entrypoint.sh
-ENTRYPOINT /usr/bin/entrypoint.sh
+# Nginx config
+RUN rm -rf /etc/nginx/conf.d
+COPY conf /etc/nginx
+
+# Static build
+COPY --from=build /app/build /usr/share/nginx/html/
+
+# Default port exposure
 EXPOSE 80
+
+# Copy .env file and shell script to container
+WORKDIR /usr/share/nginx/html
+COPY ./env.sh .
+COPY .env .
+
+# Add bash
+RUN apk add --no-cache bash
+
+# Make our shell script executable
+RUN chmod +x env.sh
+
+# Start Nginx server
+CMD ["/bin/bash", "-c", "/usr/share/nginx/html/env.sh && nginx -g \"daemon off;\""]
