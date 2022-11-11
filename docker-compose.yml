@@ -1,12 +1,12 @@
 version: "3.5"
 services:
   ui:
-    image: "ui.web3signer-prater.dnp.dappnode.eth:0.1.0"
+    image: "ui.web3signer-prater.dnp.dappnode.eth:0.1.13"
     build:
       context: ui
     restart: unless-stopped
   web3signer:
-    image: "web3signer.web3signer-prater.dnp.dappnode.eth:0.1.0"
+    image: "web3signer.web3signer-prater.dnp.dappnode.eth:0.1.13"
     depends_on:
       - postgres
     security_opt:
@@ -15,7 +15,7 @@ services:
       context: web3signer
       dockerfile: Dockerfile
       args:
-        UPSTREAM_VERSION: 22.8.1
+        UPSTREAM_VERSION: 22.10.0
     environment:
       LOG_TYPE: INFO
       EXTRA_OPTS: ""
@@ -23,7 +23,7 @@ services:
       - "web3signer_data:/data"
     restart: unless-stopped
   postgres:
-    image: "postgres.web3signer-prater.dnp.dappnode.eth:0.1.0"
+    image: "postgres.web3signer-prater.dnp.dappnode.eth:0.1.13"
     healthcheck:
       test: pg_isready -U postgres
       interval: 5s
@@ -33,7 +33,7 @@ services:
       context: postgres
       dockerfile: Dockerfile
       args:
-        UPSTREAM_VERSION: 22.8.1
+        UPSTREAM_VERSION: 22.10.0
     user: postgres
     volumes:
       - "postgres_data:/var/lib/postgresql/data"
