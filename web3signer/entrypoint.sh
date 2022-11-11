@@ -33,6 +33,7 @@ case "$_DAPPNODE_GLOBAL_CONSENSUS_CLIENT_PRATER" in
   export CLIENT_API="http://beacon-validator.nimbus-prater.dappnode:3500"
   export TOKEN_FILE="/security/nimbus/auth-token"
   export CLIENTS_TO_REMOVE=(teku lighthouse lodestar prysm)
+  ;;
 "lodestar-prater.dnp.dappnode.eth")
   ETH2_CLIENT_DNS="validator.lodestar-prater.dappnode"
   export BEACON_NODE_API="http://beacon-chain.lodestar-prater.dappnode:3500"
