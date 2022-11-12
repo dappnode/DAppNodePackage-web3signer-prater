@@ -38,7 +38,7 @@ case "$_DAPPNODE_GLOBAL_CONSENSUS_CLIENT_PRATER" in
   ETH2_CLIENT_DNS="validator.lodestar-prater.dappnode"
   export BEACON_NODE_API="http://beacon-chain.lodestar-prater.dappnode:3500"
   export CLIENT_API="http://validator.lodestar-prater.dappnode:3500"
-  #no known security parameters for Lodestar currently.
+  export TOKEN_FILE="/security/lodestar/api-token.txt"
   export CLIENTS_TO_REMOVE=(teku lighthouse prsym nimbus)
   ;;
 *)
