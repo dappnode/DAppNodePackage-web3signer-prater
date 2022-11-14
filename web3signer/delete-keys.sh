@@ -26,7 +26,7 @@ for client in "${CLIENTS_TO_REMOVE[@]}"; do
     ;;
   "lodestar")
     CLIENT_API="http://validator.lodestar-prater.dappnode:3500"
-    TOKEN_FILE=""
+    TOKEN_FILE="/security/lodestar/api-token.txt"
     CERT_REQUEST=""
     ;;
   *)
