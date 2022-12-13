@@ -24,6 +24,11 @@ for client in "${CLIENTS_TO_REMOVE[@]}"; do
     TOKEN_FILE="/security/nimbus/auth-token"
     CERT_REQUEST=""
     ;;
+  "lodestar")
+    CLIENT_API="http://validator.lodestar-prater.dappnode:3500"
+    TOKEN_FILE="/security/lodestar/api-token.txt"
+    CERT_REQUEST=""
+    ;;
   *)
     echo "client does not exist"
     exit 1
