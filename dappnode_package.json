@@ -1,7 +1,7 @@
 {
   "name": "web3signer-prater.dnp.dappnode.eth",
   "version": "0.1.13",
-  "upstreamVersion": "22.10.0",
+  "upstreamVersion": "22.11.0",
   "architectures": ["linux/amd64"],
   "upstreamRepo": "ConsenSys/web3signer",
   "mainService": "web3signer",
@@ -36,6 +36,9 @@
       "envs": ["CONSENSUS_CLIENT_PRATER", "EXECUTION_CLIENT_PRATER"],
       "services": ["ui"]
     },
-    { "envs": ["CONSENSUS_CLIENT_PRATER"], "services": ["web3signer"] }
+    {
+      "envs": ["CONSENSUS_CLIENT_PRATER"],
+      "services": ["web3signer"]
+    }
   ]
 }
