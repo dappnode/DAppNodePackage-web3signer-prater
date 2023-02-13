@@ -109,5 +109,7 @@ exec /opt/web3signer/bin/web3signer \
   --slashing-protection-db-url=jdbc:postgresql://postgres.web3signer-prater.dappnode:5432/web3signer \
   --slashing-protection-db-username=postgres \
   --slashing-protection-db-password=password \
+  --slashing-protection-pruning-enabled=true \
+  --slashing-protection-pruning-epochs-to-keep=500 \
   --key-manager-api-enabled=true \
   ${EXTRA_OPTS}
