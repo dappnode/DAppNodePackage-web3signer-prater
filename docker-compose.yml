@@ -2,7 +2,7 @@ version: "3.5"
 services:
   brain:
     image: "brain.web3signer-prater.dnp.dappnode.eth:0.1.13"
-    build: # TODO: remove this when the image is published
+    build:
       context: brain
       dockerfile: Dockerfile.webpack
     depends_on:
@@ -11,6 +11,8 @@ services:
       - LOG_LEVEL=debug
       - NETWORK=prater
     restart: unless-stopped
+    volumes:
+      - "brain_data:/app/brain-db.json"
   web3signer:
     image: "web3signer.web3signer-prater.dnp.dappnode.eth:0.1.13"
     healthcheck:
