@@ -23,18 +23,22 @@
     "url": "https://github.com/dappnode/DAppNodePackage-web3signer-prater/issues"
   },
   "links": {
-    "ui": "http://ui.web3signer-prater.dappnode",
+    "ui": "http://brain.web3signer-prater.dappnode",
     "homepage": "https://docs.web3signer.consensys.net/en/latest/",
     "readme": "https://github.com/ConsenSys/web3signer/blob/master/README.md"
   },
   "license": "Apache-2.0",
   "requirements": {
-    "minimumDappnodeVersion": "0.2.58"
+    "minimumDappnodeVersion": "0.2.67"
   },
   "globalEnvs": [
     {
-      "envs": ["CONSENSUS_CLIENT_PRATER", "EXECUTION_CLIENT_PRATER"],
-      "services": ["ui"]
+      "envs": [
+        "CONSENSUS_CLIENT_PRATER",
+        "EXECUTION_CLIENT_PRATER",
+        "FEE_RECIPIENT_PRATER"
+      ],
+      "services": ["brain"]
     },
     {
       "envs": ["CONSENSUS_CLIENT_PRATER"],
@@ -46,6 +50,11 @@
       "name": "keystores",
       "path": "/data/keyfiles",
       "service": "web3signer"
+    },
+    {
+      "name": "brain-db",
+      "path": "/app/brain-db.json",
+      "service": "brain"
     }
   ]
 }
