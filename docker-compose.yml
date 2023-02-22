@@ -4,7 +4,7 @@ services:
     image: "brain.web3signer-prater.dnp.dappnode.eth:0.1.13"
     build:
       context: brain
-      dockerfile: Dockerfile.webpack
+      dockerfile: Dockerfile
     depends_on:
       - web3signer
     environment:
@@ -12,7 +12,7 @@ services:
       - NETWORK=prater
     restart: unless-stopped
     volumes:
-      - "brain_data:/app/brain-db.json"
+      - "brain_data:/app/data"
   web3signer:
     image: "web3signer.web3signer-prater.dnp.dappnode.eth:0.1.13"
     healthcheck:
