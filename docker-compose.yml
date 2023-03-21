@@ -1,4 +1,4 @@
-version: "3.5"
+version: "3.8"
 services:
   brain:
     image: "brain.web3signer-prater.dnp.dappnode.eth:0.1.13"
@@ -21,7 +21,8 @@ services:
       timeout: 5s
       retries: 5
     depends_on:
-      - postgres
+      flyway:
+        condition: service_completed_successfully
     security_opt:
       - "seccomp:unconfined"
     build:
@@ -34,6 +35,14 @@ services:
     volumes:
       - "web3signer_data:/data"
     restart: unless-stopped
+  flyway:
+    build:
+      context: flyway
+      dockerfile: Dockerfile
+    depends_on:
+      postgres:
+        condition: service_started
+    image: "flyway.web3signer-prater.dnp.dappnode.eth:0.1.13"
   postgres:
     image: "postgres.web3signer-prater.dnp.dappnode.eth:0.1.13"
     healthcheck:
