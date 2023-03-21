@@ -16,7 +16,7 @@ RUN wget -q https://github.com/ConsenSys/web3signer/archive/refs/tags/${UPSTREAM
 ##########
 # FLYWAY #
 ##########
-FROM flyway/flyway:8.0.5-alpine
+FROM flyway/flyway:9.16.1-alpine
 ARG UPSTREAM_VERSION
 
 COPY --from=postgres-migrations /usr/src/app/web3signer-${UPSTREAM_VERSION}/slashing-protection/src/main/resources/migrations/postgresql/* /flyway/sql/
