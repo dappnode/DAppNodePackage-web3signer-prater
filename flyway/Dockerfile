@@ -20,4 +20,4 @@ FROM flyway/flyway:8.0.5-alpine
 ARG UPSTREAM_VERSION
 
 COPY --from=postgres-migrations /usr/src/app/web3signer-${UPSTREAM_VERSION}/slashing-protection/src/main/resources/migrations/postgresql/* /flyway/sql/
-CMD ["-url=jdbc:postgresql://postgres.web3signer-prater.dappnode:5432/web3signer", "-user=postgres", "-password=postgres", "-connectRetries=60", "migrate"]
+CMD ["-url=jdbc:postgresql://postgres.web3signer-prater.dappnode:5432/web3signer", "-user=postgres", "-password=password", "-connectRetries=60", "migrate"]
