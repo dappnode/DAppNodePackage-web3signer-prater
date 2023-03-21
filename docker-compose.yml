@@ -5,7 +5,8 @@ services:
     build:
       context: brain
     depends_on:
-      - web3signer
+      web3signer:
+        condition: service_started
     environment:
       - LOG_LEVEL=debug
     restart: unless-stopped
@@ -13,13 +14,6 @@ services:
       - "brain_data:/app/data"
   web3signer:
     image: "web3signer.web3signer-prater.dnp.dappnode.eth:0.1.13"
-    healthcheck:
-      test: >-
-        curl -H 'Host: web3signer.web3signer-prater.dappnode'
-        http://localhost:9000/healthcheck
-      interval: 5s
-      timeout: 5s
-      retries: 5
     depends_on:
       flyway:
         condition: service_completed_successfully
@@ -47,11 +41,6 @@ services:
     image: "flyway.web3signer-prater.dnp.dappnode.eth:0.1.13"
   postgres:
     image: "postgres.web3signer-prater.dnp.dappnode.eth:0.1.13"
-    healthcheck:
-      test: pg_isready -U postgres
-      interval: 5s
-      timeout: 5s
-      retries: 5
     build:
       context: postgres
       dockerfile: Dockerfile
