@@ -39,6 +39,8 @@ services:
     build:
       context: flyway
       dockerfile: Dockerfile
+      args:
+        UPSTREAM_VERSION: 23.3.0
     depends_on:
       postgres:
         condition: service_started
