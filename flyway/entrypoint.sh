@@ -17,5 +17,3 @@ else
   echo "Migration completed"
   exit 0
 fi
-
-
