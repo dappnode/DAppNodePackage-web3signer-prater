@@ -46,6 +46,7 @@ services:
       postgres:
         condition: service_started
     image: "flyway.web3signer-prater.dnp.dappnode.eth:0.1.13"
+    restart: unless-stopped
   postgres:
     image: "postgres.web3signer-prater.dnp.dappnode.eth:0.1.13"
     build:
