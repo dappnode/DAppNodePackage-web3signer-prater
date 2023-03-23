@@ -3,7 +3,7 @@
 set -e
 
 # Get postgresql database version and trim whitespaces
-DATABASE_VERSION=$(PGPASSWORD=password psql --tuples-only -U postgres -h postgres.web3signer-prater.dappnode -p 5432 -d web3signer -c "SELECT version FROM database_version WHERE id=1;" | awk '{print $1}' | tr -d '[:space:]')
+DATABASE_VERSION=$(PGPASSWORD=password psql -U postgres -h postgres.web3signer-prater.dappnode -p 5432 -d web3signer -t -A -c "SELECT version FROM database_version WHERE id=1;")
 
 # Get the latest migration file version (ending in .sql) and trim whitespaces
 LATEST_MIGRATION_VERSION=$(ls -1 /flyway/sql/ | grep -E "V[0-9]+__.*.sql$" | tail -n 1 | cut -d'_' -f1 | cut -d'V' -f2 | sed 's/^0*//' | tr -d '[:space:]')
