@@ -8,4 +8,4 @@
    - [Teku-Prater](http://my.dappnode/#/installer/teku-prater.dnp.dappnode.eth) 
    - [Nimbus-Prater](http://my.dappnode/#/installer/nimbus-prater.dnp.dappnode.eth)
 - All Staking Management is now in the Comprehensive [StakersUI](http://my.dappnode/#/stakers/prater)
-- The Flyway container takes care of importing the previous version's slashing protection database when an update is installed, so it's meant to run only once.
+- The Flyway service takes care of importing the previous version's slashing protection database when an update is installed, so it's meant to run only once per update, and it is normal to see that the Flyway service is stopped
