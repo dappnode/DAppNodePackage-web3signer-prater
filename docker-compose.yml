@@ -20,7 +20,7 @@ services:
         http://localhost:9000/healthcheck
       interval: 5s
       timeout: 5s
-      retries: 20
+      retries: 100
     depends_on:
       flyway:
         condition: service_completed_successfully
