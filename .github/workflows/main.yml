@@ -17,6 +17,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npx @dappnode/dappnodesdk build --skip_save
+      
+  e2e-test:
+    runs-on: prater
+    needs: build-test
+    if: github.event_name != 'push'
+    name: End to end tests
+    steps:
+      - uses: actions/checkout@v2
+      - run: npx @dappnode/dappnodesdk@latest github-action test-end-to-end --errorLogsTimeout 120 --healthCheckUrl http://web3signer.web3signer-prater.dappnode:9000/upcheck --network prater
+        env:
+          VALIDATOR_INDEX: ${{ secrets.PRATER_VALIDATOR_INDEX }}
 
   release:
     name: Release
