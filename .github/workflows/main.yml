@@ -29,6 +29,15 @@ jobs:
         env:
           VALIDATOR_INDEX: ${{ secrets.PRATER_VALIDATOR_INDEX }}
 
+  e2e-test:
+    runs-on: prater
+    needs: build-test
+    if: github.event_name != 'push'
+    name: End to end tests
+    steps:
+      - uses: actions/checkout@v2
+      - run: npx @dappnode/dappnodesdk@latest github-action test-end-to-end --errorLogsTimeout 120 --healthCheckUrl http://web3signer.web3signer-prater.dappnode:9000 --network prater
+
   release:
     name: Release
     runs-on: ubuntu-latest
