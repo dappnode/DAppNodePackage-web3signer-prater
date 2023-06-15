@@ -10,7 +10,7 @@
 
 A validator client contributes to the consensus of the Ethereum Blockchain by signing proposals and attestations of blocks, using a BLS private key which must be available to this client at all times.
 
-The BLS remote signer API is designed to be consumed by validator clients, looking for a more secure avenue to store their BLS12-381 private key(s); enabling them to run in more permissive and scalable environments.
+The BLS remote signer API is designed to be consumed by validator clients, looking for a more secure avenue to store their BLS12-381 private key(s), enabling them to run in more permissive and scalable environments.
 
 More information about the EIP can be found at [the official website](https://eips.ethereum.org/EIPS/eip-3030)
 
