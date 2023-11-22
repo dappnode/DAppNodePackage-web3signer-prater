@@ -33,11 +33,7 @@
   },
   "globalEnvs": [
     {
-      "envs": [
-        "CONSENSUS_CLIENT_PRATER",
-        "EXECUTION_CLIENT_PRATER",
-        "FEE_RECIPIENT_PRATER"
-      ],
+      "envs": ["CONSENSUS_CLIENT_PRATER", "EXECUTION_CLIENT_PRATER"],
       "services": ["brain"]
     },
     {
