@@ -6,7 +6,7 @@ ARG UPSTREAM_VERSION
 
 FROM consensys/web3signer:$UPSTREAM_VERSION
 USER root
-RUN apt update && apt install ca-certificates --yes
+RUN apt update && apt install ca-certificates unzip --yes
 
 COPY /security /security
 COPY entrypoint.sh /usr/bin/entrypoint.sh
