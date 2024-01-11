@@ -1,7 +1,7 @@
 {
   "name": "web3signer-prater.dnp.dappnode.eth",
   "version": "0.1.26",
-  "upstreamVersion": "23.11.0",
+  "upstreamVersion": "24.1.0",
   "architectures": ["linux/amd64"],
   "upstreamRepo": "ConsenSys/web3signer",
   "mainService": "web3signer",
