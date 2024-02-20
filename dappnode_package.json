@@ -33,7 +33,7 @@
   },
   "globalEnvs": [
     {
-      "envs": ["CONSENSUS_CLIENT_PRATER", "EXECUTION_CLIENT_PRATER"],
+      "envs": ["CONSENSUS_CLIENT_PRATER", "EXECUTION_CLIENT_PRATER", "MEVBOOST_PRATER"],
       "services": ["brain"]
     },
     {
