@@ -29,7 +29,10 @@
   },
   "license": "Apache-2.0",
   "requirements": {
-    "minimumDappnodeVersion": "0.2.67"
+    "minimumDappnodeVersion": "0.2.89"
+  },
+  "optionalDependencies": {
+    "prysm-prater.dnp.dappnode.eth": "1.0.28"
   },
   "globalEnvs": [
     {
